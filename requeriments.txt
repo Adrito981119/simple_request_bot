@@ -1,2 +1,2 @@
-pyhton 3.6 or upper
+pyhton 3.x
 python-telegram-bot api
