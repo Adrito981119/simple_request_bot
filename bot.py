@@ -8,7 +8,7 @@ import datetime
 
 #declaraciones y login en telegram
 mToken = '1963669907:AAHPjXfT5139wX1ZwzD9w5CQsiRsw-0vD5Q'
-target = '-1001508135713'
+target = '-1001541425188'
 today = datetime.date.today()
 bot = telegram.Bot(mToken)
 updater = Updater(mToken, use_context=True)
