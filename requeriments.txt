@@ -1,2 +1,1 @@
-pyhton 3.x
-python-telegram-bot api
+python-telegram-bot
