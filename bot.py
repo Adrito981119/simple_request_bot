@@ -7,7 +7,7 @@ import datetime
 
 
 #declaraciones y login en telegram
-mToken = '1963669907:AAE03_qahZ-cQ5mOCx54nIpXVgeg_ROWKr0'
+mToken = '1963669907:AAHPjXfT5139wX1ZwzD9w5CQsiRsw-0vD5Q'
 target = '-1001469378410'
 today = datetime.date.today()
 bot = telegram.Bot(mToken)
