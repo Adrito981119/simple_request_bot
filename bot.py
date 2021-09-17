@@ -4,11 +4,11 @@ from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 import logging
 import datetime
-
+import os
 
 #declaraciones y login en telegram
-mToken = '1963669907:AAHPjXfT5139wX1ZwzD9w5CQsiRsw-0vD5Q'
-target = '-1001541425188'
+mToken = os.environ['TOKEN']
+target = os.environ['ID_CHAT']
 today = datetime.date.today()
 bot = telegram.Bot(mToken)
 updater = Updater(mToken, use_context=True)
