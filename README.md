@@ -2,5 +2,6 @@
 Reacciona a los #deseo y #VIP y envia los mensajes a un grupo especifico
 
 
-
-Simplemente reemplazar mToken con el Token q t da @BotFather y target con el id del grupo o canal a donde iran los pedidos
+Conigurar las variables de entorno
+TOKEN = API Token q t ad @BotFather
+ID_CHAT = id del grupo o canal donde el bot enviara los pedidos
