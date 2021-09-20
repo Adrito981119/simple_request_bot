@@ -7,3 +7,5 @@ Conigurar las variables de entorno
 TOKEN = API Token q t da @BotFather
 
 ID_CHAT = id del grupo o canal donde el bot enviara los pedidos
+
+Cambiar los metodos prices e info para establecer los precios propios o alguna informacion util
