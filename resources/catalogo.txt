@@ -8,7 +8,7 @@
 -Accel World
 -AirGear
 -Akame ga kill
--Akiba’s Trip The Animation
+-Akibas Trip The Animation
 -Akikan!
 -Akudama-drive
 -Angel Beats!
@@ -70,7 +70,7 @@
 -Dorohedoro
 -Dororo
 -Dr. Stone
--Dragon's Blood
+-Dragons Blood
 -Drifters
 -Dungeon ni Deai wo Motomeru
 -Eighty-Six-86
@@ -129,7 +129,7 @@
 -Jaku-Chara Tomozaki-Kun
 -Jinrui wa Suitai Shimashita
 -Jitsu wa Watashi wa
--JoJo's Bizarre Adventure
+-JoJos Bizarre Adventure
 -Jormungand
 -Jujutsu Kaizen
 -Junketsu no Maria
@@ -242,7 +242,7 @@
 -Sakurako-san no Ashimoto
 -Sakurasou no Pet na Kanojo
 -Samurai shamploo
--Samurái Champloo
+-SamurÃ¡i Champloo
 -Sankarea
 -Sao
 -Scared Rider Xechs
@@ -293,7 +293,7 @@
 -Tokyo Ghoul
 -Tokyo Magnitude 8.0
 -Totaeba Last Dungeon
--Trickster - Edogawa Ranpo “Shounen Tanteidan
+-Trickster - Edogawa Ranpo â€œShounen Tanteidan
 -Trinity-Seven
 -Un-Go
 -Val X Love
