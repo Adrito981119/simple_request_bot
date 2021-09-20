@@ -27,7 +27,7 @@ def when_start(update, context):
         [InlineKeyboardButton("💎Precios💎",callback_data = "precios"),
         InlineKeyboardButton("📄Informacion📄", callback_data="info")
         ],
-
+        [InlineKeyboardButton("CATALOGO",callback_data = "catalogo")]
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -40,29 +40,38 @@ def prices(update: Update, context):
     query = update.callback_query
     query.answer()
     query.edit_message_text("🎥 Animes - Películas - OVAS:\n"
-    							"🎞 de 12 cap - $10\n"
-    							"🎞 de 24 cap - $25\n"
-    							"🎞 de 25 a 35 cap - $35\n"
-    							"🎞 de 36 a 50 cap - $40\n"
-    							"🎞 de 51 a 75 cap - $55\n"
-    							"🎞 de 100 cap o mas - $75\n"
-    							"🎞 Cap/Sueltos - $2\n"
-    							"\n"
-    							"🎥 Películas:\n"
-    							"🎞 de 1h - $5\n"
-    							"🎞 de 1h 40min en adelante - $10\n"
-    							"\n"
-    							"❗️El Precio se puede ajustar a conveniencia tanto del Admin como del usuario en caso de q la serie no este dentro de esas categorías ó haga un pedido grande variado❗️\n"
-    							"\n"
-    							"😁👍 Gracias por elegir a @Anime_y_masS3 como su mejor opción...\n")
-    return ConversationHandler.fallbacks
+                                "🎞 de 12 cap - $10 MN.\n"
+                                "🎞 de 24 cap - $25 MN.\n"
+                                "🎞 de 25 a 35 cap - $35 MN.\n"
+                                "🎞 de 36 a 50 cap - $40 MN.\n"
+                                "🎞  de 51 a 75 cap - $55 MN.\n"
+                                "🎞 de 100 cap  o mas - $75 MN.\n"
+                                "🎞 Cap/Sueltos - $2 MN.\n"
+                                "🎞 OVAS - $2 MN. ( en dependencia de la duración )\n\n"
+
+                                "🎥 Películas:\n"
+                                "🎞 de 1h - $5 MN.\n"
+                                "🎞 de 1h 40min en adelante - $10 MN.\n\n"
+
+                                "❗️El Precio se puede ajustar a conveniencia tanto del Admin como del usuario en caso de q la serie no este dentro de esas categorías ó haga un pedido grande variado❗️\n\n"
+
+                                "😁👍 Gracias por elegir a @Anime_y_masS3 como su mejor opción...\n"
+                                "🏠 #Quédate_en_Casa y #Échate par de animes.")
 
 #envia una pequeña info sobre el funcionamiento del bot, modificar para uso propio
 def info(update: Update, context):
     query = update.callback_query
     query.answer()
-    query.edit_message_text("Para pedir VIP o Deseos debes escribir en los comentarios del canal o el grupo, #VIP y #deseo o puedes aserlo aqui en el propio BOT \n😁👍")
-    return ConversationHandler.fallbacks
+    query.edit_message_text("✅Para pedir una serie usar #deseo seguido del nombre del anime que desea en el chat o con el pv directamente desde el bot\n\n"
+                            "✅Para hacer un pedido VIP usar el #VIP seguido del nombre del anime que quiere en el chat o con el pv directamente desde el bot")
+    
+
+def send_catalog(update: Update, context):
+    query = update.callback_query
+    query.answer()
+    with open("./resources/catalogo.txt") as file:
+        context.bot.send_document(chat_id=update.effective_chat.id,document = file, filename = 'Catalogo.txt')
+
 
 
 
@@ -107,11 +116,13 @@ def main() -> None:
     log_handler = MessageHandler(Filters.regex('#deseo') ^ Filters.regex('#VIP'), send_to_log)
     info_handler = CallbackQueryHandler(info, pattern=r'^info$')
     price_handler = CallbackQueryHandler(prices, pattern=r'^precios$')
+    catalog_handler = CallbackQueryHandler(send_catalog,pattern=r'^catalogo$')
 
 
     despachador.add_handler(start_handler)
     despachador.add_handler(info_handler)
     despachador.add_handler(price_handler)
+    despachador.add_handler(catalog_handler)
     despachador.add_handler(log_handler)
 
     updater.start_polling()
