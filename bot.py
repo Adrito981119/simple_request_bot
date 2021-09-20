@@ -39,7 +39,7 @@ def when_start(update, context):
 def prices(update: Update, context):
     query = update.callback_query
     query.answer()
-    query.edit_message_text("🎥 Animes - Películas - OVAS:\n"
+    query.message.reply_text(text = "🎥 Animes - Películas - OVAS:\n"
                                 "🎞 de 12 cap - $10 MN.\n"
                                 "🎞 de 24 cap - $25 MN.\n"
                                 "🎞 de 25 a 35 cap - $35 MN.\n"
@@ -58,19 +58,21 @@ def prices(update: Update, context):
                                 "😁👍 Gracias por elegir a @Anime_y_masS3 como su mejor opción...\n"
                                 "🏠 #Quédate_en_Casa y #Échate par de animes.")
 
+
+
 #envia una pequeña info sobre el funcionamiento del bot, modificar para uso propio
 def info(update: Update, context):
     query = update.callback_query
     query.answer()
-    query.edit_message_text("✅Para pedir una serie usar #deseo seguido del nombre del anime que desea en el chat o con el pv directamente desde el bot\n\n"
+    query.message.reply_text(text = "✅Para pedir una serie usar #deseo seguido del nombre del anime que desea en el chat o con el pv directamente desde el bot\n\n"
                             "✅Para hacer un pedido VIP usar el #VIP seguido del nombre del anime que quiere en el chat o con el pv directamente desde el bot")
     
-
+#envia el catalogo, fichero debe llamarse catalogo.txt
 def send_catalog(update: Update, context):
     query = update.callback_query
     query.answer()
-    with open("./resources/catalogo.txt", encoding = "utf-8") as file:
-        context.bot.send_document(chat_id=update.effective_chat.id,document = file, filename = 'Catalogo.txt')
+    with open("./resources/catalogo.txt",encoding="utf-8") as file:
+        context.bot.send_document(chat_id=update.effective_chat.id, document = file, filename = 'Catalogo.txt')
 
 
 
