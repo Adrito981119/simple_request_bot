@@ -69,7 +69,7 @@ def info(update: Update, context):
 def send_catalog(update: Update, context):
     query = update.callback_query
     query.answer()
-    with open("./resources/catalogo.txt") as file:
+    with open("./resources/catalogo.txt", encoding = "utf-8") as file:
         context.bot.send_document(chat_id=update.effective_chat.id,document = file, filename = 'Catalogo.txt')
 
 
