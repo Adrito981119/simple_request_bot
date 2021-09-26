@@ -8,7 +8,7 @@ TOKEN = API Token q t da @BotFather
 
 TARGET = id del grupo o canal donde el bot enviara los pedidos
 
-ID_CHAT = id del canal donde se encuentra el bot
+ID_CHANNEL = id del canal donde se encuentra el bot
 
 Como usarlo:
 
