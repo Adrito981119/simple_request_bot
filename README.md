@@ -6,7 +6,13 @@ Configurar las variables de entorno
 
 TOKEN = API Token q t da @BotFather
 
-ID_CHAT = id del grupo o canal donde el bot enviara los pedidos
+TARGET = id del grupo o canal donde el bot enviara los pedidos
+
+ID_CHAT = id del canal donde se encuentra el bot
+
+Como usarlo:
+
+Añadelo al canal y a su grupo como administrador
 
 Cambiar los metodos prices e info para establecer los precios propios o alguna informacion util
 
