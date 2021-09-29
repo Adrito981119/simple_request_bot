@@ -1,8 +1,5 @@
-from datetime import date
 import telegram
 import logging
-
-from telegram import chat
 import env_vars
 import AccessModule
 import AdminModule
@@ -26,22 +23,34 @@ logger = logging.getLogger(__name__)
 
 # ejecucion al dar /start
 def when_start(update, context):
-    if AccessModule.access(update,update.effective_user.id):
-        keyboard = [
-            [InlineKeyboardButton("Hacer pedido",callback_data="pedido")],
-            [InlineKeyboardButton("💎Precios💎",callback_data = "precios"),
-            InlineKeyboardButton("📄Informacion📄", callback_data="info")
-            ],
-            [InlineKeyboardButton("CATALOGO",callback_data = "catalogo")],
-            [InlineKeyboardButton("👩‍⚖️Funciones administrativas👨‍⚖️",callback_data= "admin")]
-        ]
+    if AccessModule.admin_access(update,update.effective_user.id):
+          keyboard = [
+                [InlineKeyboardButton("Hacer pedido",callback_data="pedido")],
+                [InlineKeyboardButton("💎Precios💎",callback_data = "precios"),
+                InlineKeyboardButton("📄Informacion📄", callback_data="info")
+                ],
+                [InlineKeyboardButton("CATALOGO",callback_data = "catalogo")],
+                [InlineKeyboardButton("👩‍⚖️Funciones administrativas👨‍⚖️",callback_data= "admin")]
+            ]
+    else:     
+        if AccessModule.access(update, update.effective_user.id):
+            keyboard = [
+                [InlineKeyboardButton("Hacer pedido",callback_data="pedido")],
+                [InlineKeyboardButton("💎Precios💎",callback_data = "precios"),
+                InlineKeyboardButton("📄Informacion📄", callback_data="info")
+                ],
+                [InlineKeyboardButton("CATALOGO",callback_data = "catalogo")]
+            ]
 
-        reply_markup = InlineKeyboardMarkup(keyboard)
-
-        update.message.reply_text(text=f"🌟Bienvenido: "+ str(update.effective_user.first_name) +", soy un bot creado x @Shaddol y @CubanYisus para manejar los pedidos del canal @Anime_y_masS3 \n"
+        else: 
+            context.bot.send_message(chat_id=update.effective_chat.id,text = "Debes ser miembro de "+ "@" + str(context.bot.get_chat(env_vars.get_channel()).username) +" para usarme")
+            return None
+    
+    
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text(text=f"🌟Bienvenido: "+ str(update.effective_user.first_name) +", soy un bot creado x @Shaddol y @CubanYisus para manejar los pedidos del canal @Anime_y_masS3 \n"
                                     "Puedes usarme directamente desde grupo o x pv si lo deseas", reply_markup = reply_markup)
-    else: 
-        context.bot.send_message(chat_id=update.effective_chat.id,text = "Debes ser miembro de "+ "@" + str(context.bot.get_chat(env_vars.get_channel()).username) +" para usarme")
+    
     return INICIO
 
 
@@ -195,6 +204,11 @@ def main() -> None:
         ],
         VIP: [
             MessageHandler(filters= Filters.text & ~(Filters.command),callback=format_VIP)
+        ],
+        ADMIN:[
+            CallbackQueryHandler(AdminModule.set_catalog, pattern=r'^add_catalog$'),
+            CallbackQueryHandler(AdminModule.set_prices, pattern=r'^add_prices$'),
+            CallbackQueryHandler(AdminModule.set_info, pattern=r'^add_info$'),
         ]
     },
     fallbacks=[start_handler], 
